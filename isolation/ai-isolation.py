@@ -1,4 +1,3 @@
-# MODULES
 import pygame, sys
 import numpy as np
 
@@ -38,7 +37,7 @@ losePlayer = 0
 # SCREEN
 # ------
 screen = pygame.display.set_mode( (WIDTH, HEIGHT) )
-pygame.display.set_caption( 'Isolation' )
+pygame.display.set_caption( 'Blocking Game' )
 screen.fill( BG_COLOR )
 
 # -------------
@@ -84,6 +83,10 @@ def draw_figures():
 
 def mark_square(row, col, player):
 	board[row][col] = player
+	print ("----------------------------------------------------")
+	print("Player " + str(player) + " marked square : (" + str(row) + "," + str(col) + ")")
+	print(board)
+	print ("----------------------------------------------------")
 
 
 def available_square(row, col, player):
@@ -169,7 +172,7 @@ def bestMove(player = 2):
 			for col in range(BOARD_COLS):
 				if(board[row][col] == 0):
 					board[row][col] = 2
-					score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,row,col,0,False)
+					score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,row,col,0,False)
 					board[row][col] = 0
 
 					if(score>bestScore):
@@ -178,7 +181,7 @@ def bestMove(player = 2):
 
 	if(-1 < currentRow-2 and currentRow-2 < BOARD_ROWS and -1 < currentCol-1 and currentCol-1 < BOARD_COLS and board[currentRow-2][currentCol-1] == 0 ):
 		board[currentRow-2][currentCol-1] = 2
-		score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-2 , currentCol-1,0,False)
+		score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-2 , currentCol-1,0,False)
 		board[currentRow-2][currentCol-1] = 0
 
 		if(score>bestScore):
@@ -187,7 +190,7 @@ def bestMove(player = 2):
 
 	if(-1 < currentRow-2 and currentRow-2 < BOARD_ROWS and -1 < currentCol+1 and currentCol+1 < BOARD_COLS and board[currentRow-2][currentCol+1] == 0 ):
 		board[currentRow-2][currentCol+1] = 2
-		score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-2,currentCol+1,0,False)
+		score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-2,currentCol+1,0,False)
 		board[currentRow-2][currentCol+1] = 0
 
 		if(score>bestScore):
@@ -196,7 +199,7 @@ def bestMove(player = 2):
 
 	if(-1 < currentRow-1 and currentRow-1 < BOARD_ROWS and -1 < currentCol-2 and currentCol-2 < BOARD_COLS and board[currentRow-1][currentCol-2] == 0 ):
 		board[currentRow-1][currentCol-2] = 2
-		score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol-2,0,False)
+		score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol-2,0,False)
 		board[currentRow-1][currentCol-2] = 0
 
 		if(score>bestScore):
@@ -205,7 +208,7 @@ def bestMove(player = 2):
 
 	if(-1 < currentRow-1 and currentRow-1 < BOARD_ROWS and -1 < currentCol+2 and currentCol+2 < BOARD_COLS and board[currentRow-1][currentCol+2] == 0 ):
 		board[currentRow-1][currentCol+2] = 2
-		score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol+2,0,False)
+		score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol+2,0,False)
 		board[currentRow-1][currentCol+2] = 0
 
 		if(score>bestScore):
@@ -214,7 +217,7 @@ def bestMove(player = 2):
 
 	if(-1 < currentRow+1 and currentRow+1 < BOARD_ROWS and -1 < currentCol-2 and currentCol-2 < BOARD_COLS and board[currentRow+1][currentCol-2] == 0 ):
 		board[currentRow+1][currentCol-2] = 2
-		score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol-2,0,False)
+		score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol-2,0,False)
 		board[currentRow+1][currentCol-2] = 0
 
 		if(score>bestScore):
@@ -223,7 +226,7 @@ def bestMove(player = 2):
 
 	if(-1 < currentRow+1 and currentRow+1 < BOARD_ROWS and -1 < currentCol+2 and currentCol+2 < BOARD_COLS and board[currentRow+1][currentCol+2] == 0 ):
 		board[currentRow+1][currentCol+2] = 2
-		score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol+2,0,False)
+		score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol+2,0,False)
 		board[currentRow+1][currentCol+2] = 0
 
 		if(score>bestScore):
@@ -232,7 +235,7 @@ def bestMove(player = 2):
 
 	if(-1 < currentRow+2 and currentRow+2 < BOARD_ROWS and -1 < currentCol-1 and currentCol-1 < BOARD_COLS and board[currentRow+2][currentCol-1] == 0 ):
 		board[currentRow+2][currentCol-1] = 2
-		score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol-1,0,False)
+		score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol-1,0,False)
 		board[currentRow+2][currentCol-1] = 0
 
 		if(score>bestScore):
@@ -241,7 +244,7 @@ def bestMove(player = 2):
 
 	if(-1 < currentRow+2 and currentRow+2 < BOARD_ROWS and -1 < currentCol+1 and currentCol+1 < BOARD_COLS and board[currentRow+2][currentCol+1] == 0 ):
 		board[currentRow+2][currentCol+1] = 2
-		score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol+1,0,False)
+		score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol+1,0,False)
 		board[currentRow+2][currentCol+1] = 0
 
 		if(score>bestScore):
@@ -257,8 +260,8 @@ def bestMove(player = 2):
 
 	
 scores = {
-  1: -10,
-  2: 10,
+  1: 10,
+  2: -10,
   0: 0
 }
 
@@ -281,56 +284,56 @@ def minimax(board, player, playerOneCurrentRow, playerOneCurrentCol, playerTwoCu
 
 		if(-1 < currentRow-2 and currentRow-2 < BOARD_ROWS and -1 < currentCol-1 and currentCol-1 < BOARD_COLS and board[currentRow-2][currentCol-1] == 0 ):
 			board[currentRow-2][currentCol-1] = 2
-			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-2 , currentCol-1,0,False)
+			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-2 , currentCol-1,0,False)
 			board[currentRow-2][currentCol-1] = 0
 
 			bestScore = max(score,bestScore)
 
 		if(-1 < currentRow-2 and currentRow-2 < BOARD_ROWS and -1 < currentCol+1 and currentCol+1 < BOARD_COLS and board[currentRow-2][currentCol+1] == 0 ):
 			board[currentRow-2][currentCol+1] = 2
-			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-2,currentCol+1,0,False)
+			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-2,currentCol+1,0,False)
 			board[currentRow-2][currentCol+1] = 0
 
 			bestScore = max(score,bestScore)
 
 		if(-1 < currentRow-1 and currentRow-1 < BOARD_ROWS and -1 < currentCol-2 and currentCol-2 < BOARD_COLS and board[currentRow-1][currentCol-2] == 0 ):
 			board[currentRow-1][currentCol-2] = 2
-			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol-2,0,False)
+			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol-2,0,False)
 			board[currentRow-1][currentCol-2] = 0
 
 			bestScore = max(score,bestScore)
 
 		if(-1 < currentRow-1 and currentRow-1 < BOARD_ROWS and -1 < currentCol+2 and currentCol+2 < BOARD_COLS and board[currentRow-1][currentCol+2] == 0 ):
 			board[currentRow-1][currentCol+2] = 2
-			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol+2,0,False)
+			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol+2,0,False)
 			board[currentRow-1][currentCol+2] = 0
 
 			bestScore = max(score,bestScore)
 
 		if(-1 < currentRow+1 and currentRow+1 < BOARD_ROWS and -1 < currentCol-2 and currentCol-2 < BOARD_COLS and board[currentRow+1][currentCol-2] == 0 ):
 			board[currentRow+1][currentCol-2] = 2
-			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol-2,0,False)
+			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol-2,0,False)
 			board[currentRow+1][currentCol-2] = 0
 
 			bestScore = max(score,bestScore)
 
 		if(-1 < currentRow+1 and currentRow+1 < BOARD_ROWS and -1 < currentCol+2 and currentCol+2 < BOARD_COLS and board[currentRow+1][currentCol+2] == 0 ):
 			board[currentRow+1][currentCol+2] = 2
-			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol+2,0,False)
+			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol+2,0,False)
 			board[currentRow+1][currentCol+2] = 0
 
 			bestScore = max(score,bestScore)
 
 		if(-1 < currentRow+2 and currentRow+2 < BOARD_ROWS and -1 < currentCol-1 and currentCol-1 < BOARD_COLS and board[currentRow+2][currentCol-1] == 0 ):
 			board[currentRow+2][currentCol-1] = 2
-			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol-1,0,False)
+			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol-1,0,False)
 			board[currentRow+2][currentCol-1] = 0
 
 			bestScore = max(score,bestScore)
 
 		if(-1 < currentRow+2 and currentRow+2 < BOARD_ROWS and -1 < currentCol+1 and currentCol+1 < BOARD_COLS and board[currentRow+2][currentCol+1] == 0 ):
 			board[currentRow+2][currentCol+1] = 2
-			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol+1,0,False)
+			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol+1,0,False)
 			board[currentRow+2][currentCol+1] = 0
 
 			bestScore = max(score,bestScore)
@@ -342,56 +345,56 @@ def minimax(board, player, playerOneCurrentRow, playerOneCurrentCol, playerTwoCu
 
 		if(-1 < currentRow-2 and currentRow-2 < BOARD_ROWS and -1 < currentCol-1 and currentCol-1 < BOARD_COLS and board[currentRow-2][currentCol-1] == 0 ):
 			board[currentRow-2][currentCol-1] = 1
-			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-2 , currentCol-1,0,True)
+			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-2 , currentCol-1,0,True)
 			board[currentRow-2][currentCol-1] = 0
 
 			bestScore = min(score,bestScore)
 
 		if(-1 < currentRow-2 and currentRow-2 < BOARD_ROWS and -1 < currentCol+1 and currentCol+1 < BOARD_COLS and board[currentRow-2][currentCol+1] == 0 ):
 			board[currentRow-2][currentCol+1] = 1
-			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-2,currentCol+1,0,True)
+			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-2,currentCol+1,0,True)
 			board[currentRow-2][currentCol+1] = 0
 
 			bestScore = min(score,bestScore)
 
 		if(-1 < currentRow-1 and currentRow-1 < BOARD_ROWS and -1 < currentCol-2 and currentCol-2 < BOARD_COLS and board[currentRow-1][currentCol-2] == 0 ):
 			board[currentRow-1][currentCol-2] = 1
-			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol-2,0,True)
+			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol-2,0,True)
 			board[currentRow-1][currentCol-2] = 0
 
 			bestScore = min(score,bestScore)
 
 		if(-1 < currentRow-1 and currentRow-1 < BOARD_ROWS and -1 < currentCol+2 and currentCol+2 < BOARD_COLS and board[currentRow-1][currentCol+2] == 0 ):
 			board[currentRow-1][currentCol+2] = 1
-			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol+2,0,True)
+			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow-1,currentCol+2,0,True)
 			board[currentRow-1][currentCol+2] = 0
 
 			bestScore = min(score,bestScore)
 
 		if(-1 < currentRow+1 and currentRow+1 < BOARD_ROWS and -1 < currentCol-2 and currentCol-2 < BOARD_COLS and board[currentRow+1][currentCol-2] == 0 ):
 			board[currentRow+1][currentCol-2] = 1
-			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol-2,0,True)
+			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol-2,0,True)
 			board[currentRow+1][currentCol-2] = 0
 
 			bestScore = min(score,bestScore)
 
 		if(-1 < currentRow+1 and currentRow+1 < BOARD_ROWS and -1 < currentCol+2 and currentCol+2 < BOARD_COLS and board[currentRow+1][currentCol+2] == 0 ):
 			board[currentRow+1][currentCol+2] = 1
-			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol+2,0,True)
+			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+1,currentCol+2,0,True)
 			board[currentRow+1][currentCol+2] = 0
 
 			bestScore = min(score,bestScore)
 
 		if(-1 < currentRow+2 and currentRow+2 < BOARD_ROWS and -1 < currentCol-1 and currentCol-1 < BOARD_COLS and board[currentRow+2][currentCol-1] == 0 ):
 			board[currentRow+2][currentCol-1] = 1
-			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol-1,0,True)
+			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol-1,0,True)
 			board[currentRow+2][currentCol-1] = 0
 
 			bestScore = min(score,bestScore)
 
 		if(-1 < currentRow+2 and currentRow+2 < BOARD_ROWS and -1 < currentCol+1 and currentCol+1 < BOARD_COLS and board[currentRow+2][currentCol+1] == 0 ):
 			board[currentRow+2][currentCol+1] = 1
-			score = minimax(board,1,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol+1,0,True)
+			score = minimax(board,2,playerOneCurrentRow,playerOneCurrentCol,currentRow+2,currentCol+1,0,True)
 			board[currentRow+2][currentCol+1] = 0
 
 			bestScore = min(score,bestScore)
@@ -425,6 +428,10 @@ while True:
 
 			clicked_row = int(mouseY // SQUARE_SIZE)
 			clicked_col = int(mouseX // SQUARE_SIZE)
+			#print('Mouse X position: ' + str(mouseX))
+			#print('Mouse Y position: ' + str(mouseY))
+			print('Clicked row: ' + str(clicked_row))
+			print('Clicked col: ' + str(clicked_col))
 
 			if available_square( clicked_row, clicked_col, 1 ):
 				player = 1
@@ -432,6 +439,7 @@ while True:
 
 				playerOneCurrentRow = clicked_row;
 				playerOneCurrentCol = clicked_col;
+				print('Player One Current Row and Col: (',str(playerOneCurrentRow)+','+str(playerOneCurrentCol)+')')
 
 
 				if check_lose( 2 ):
@@ -447,6 +455,10 @@ while True:
 					if check_lose( 1 ):
 						losePlayer = 1
 						game_over = True
+						print("********************************************************")
+						print("Restarting game : Press -> R")
+						print("Quit game : Press -> Q")
+						print("********************************************************")
 					
 					draw_figures()
 
@@ -460,6 +472,8 @@ while True:
 				playerOneCurrentCol = -1;
 				playerTwoCurrentRow = -1;
 				playerTwoCurrentCol = -1;
+            
+			elif event.key == pygame.K_q:
+				pygame.display.quit()
 
 	pygame.display.update()
-
